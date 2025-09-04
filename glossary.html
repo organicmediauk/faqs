@@ -45,16 +45,19 @@
     .acc-trigger .chev{flex:0 0 auto;transition:transform .22s ease;color:var(--muted);font-weight:900}
     .acc-trigger[aria-expanded="true"] .chev{transform:rotate(45deg)} /* + to x-ish */
 
-    /* Fix: keep padding constant, animate only height */
+    /* Panel has NO padding so it can fully collapse without showing content */
     .acc-panel{
-      padding:10px 16px 14px 30px;
       max-height:0;
       overflow:hidden;
-      transition:max-height .28s ease;
+      transition:max-height .32s ease;
       will-change:max-height;
       background:#fff;
     }
-    .acc-panel p{margin:0;font-size:15px}
+    /* Padding lives on the inner wrapper */
+    .acc-inner{
+      padding:10px 16px 14px 30px;
+    }
+    .acc-inner p{margin:0;font-size:15px}
 
     @media (prefers-reduced-motion:reduce){
       .acc-panel{transition:none}
@@ -80,35 +83,35 @@
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-abstract" id="t-abstract">
           <span class="bar" aria-hidden="true"></span><span class="label">Abstract Art</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-abstract" role="region" aria-labelledby="t-abstract"><p>Art that does not attempt to represent reality, instead using shapes, colours, and forms for expression.</p></div>
+        <div class="acc-panel" id="p-abstract" role="region" aria-labelledby="t-abstract"><div class="acc-inner"><p>Art that does not attempt to represent reality, instead using shapes, colours, and forms for expression.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-acidfree" id="t-acidfree">
           <span class="bar" aria-hidden="true"></span><span class="label">Acid-Free Paper</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-acidfree" role="region" aria-labelledby="t-acidfree"><p>Archival-quality paper used in prints or storage to prevent yellowing and deterioration.</p></div>
+        <div class="acc-panel" id="p-acidfree" role="region" aria-labelledby="t-acidfree"><div class="acc-inner"><p>Archival-quality paper used in prints or storage to prevent yellowing and deterioration.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-acrylic" id="t-acrylic">
           <span class="bar" aria-hidden="true"></span><span class="label">Acrylic</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-acrylic" role="region" aria-labelledby="t-acrylic"><p>A fast-drying paint made of pigment suspended in acrylic polymer emulsion, widely used by contemporary artists.</p></div>
+        <div class="acc-panel" id="p-acrylic" role="region" aria-labelledby="t-acrylic"><div class="acc-inner"><p>A fast-drying paint made of pigment suspended in acrylic polymer emulsion, widely used by contemporary artists.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-appraisal" id="t-appraisal">
           <span class="bar" aria-hidden="true"></span><span class="label">Appraisal</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-appraisal" role="region" aria-labelledby="t-appraisal"><p>A professional valuation of an artwork’s fair market value for investment, insurance, or resale purposes.</p></div>
+        <div class="acc-panel" id="p-appraisal" role="region" aria-labelledby="t-appraisal"><div class="acc-inner"><p>A professional valuation of an artwork’s fair market value for investment, insurance, or resale purposes.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-auction" id="t-auction">
           <span class="bar" aria-hidden="true"></span><span class="label">Auction House</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-auction" role="region" aria-labelledby="t-auction"><p>Institutions like Christie’s, Sotheby’s, or Phillips that sell artworks via public bidding, often influencing global market trends.</p></div>
+        <div class="acc-panel" id="p-auction" role="region" aria-labelledby="t-auction"><div class="acc-inner"><p>Institutions like Christie’s, Sotheby’s, or Phillips that sell artworks via public bidding, often influencing global market trends.</p></div></div>
       </div>
     </div>
 
@@ -119,21 +122,21 @@
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-biennale" id="t-biennale">
           <span class="bar" aria-hidden="true"></span><span class="label">Biennale</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-biennale" role="region" aria-labelledby="t-biennale"><p>Large-scale international art exhibition, often shaping critical reputation and market demand for participating artists.</p></div>
+        <div class="acc-panel" id="p-biennale" role="region" aria-labelledby="t-biennale"><div class="acc-inner"><p>Large-scale international art exhibition, often shaping critical reputation and market demand for participating artists.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-bluechip" id="t-bluechip">
           <span class="bar" aria-hidden="true"></span><span class="label">Blue-Chip Art</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-bluechip" role="region" aria-labelledby="t-bluechip"><p>Works by established, historically significant artists whose markets are considered more stable.</p></div>
+        <div class="acc-panel" id="p-bluechip" role="region" aria-labelledby="t-bluechip"><div class="acc-inner"><p>Works by established, historically significant artists whose markets are considered more stable.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-buyin" id="t-buyin">
           <span class="bar" aria-hidden="true"></span><span class="label">Buy-in</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-buyin" role="region" aria-labelledby="t-buyin"><p>When an artwork fails to sell at auction because it did not meet the reserve price.</p></div>
+        <div class="acc-panel" id="p-buyin" role="region" aria-labelledby="t-buyin"><div class="acc-inner"><p>When an artwork fails to sell at auction because it did not meet the reserve price.</p></div></div>
       </div>
     </div>
 
@@ -144,35 +147,35 @@
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-canvas" id="t-canvas">
           <span class="bar" aria-hidden="true"></span><span class="label">Canvas</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-canvas" role="region" aria-labelledby="t-canvas"><p>A fabric, usually cotton or linen, stretched over a frame and primed as a surface for painting.</p></div>
+        <div class="acc-panel" id="p-canvas" role="region" aria-labelledby="t-canvas"><div class="acc-inner"><p>A fabric, usually cotton or linen, stretched over a frame and primed as a surface for painting.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-catrais" id="t-catrais">
           <span class="bar" aria-hidden="true"></span><span class="label">Catalogue Raisonné</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-catrais" role="region" aria-labelledby="t-catrais"><p>A definitive, scholarly listing of all known works by an artist, essential for authentication.</p></div>
+        <div class="acc-panel" id="p-catrais" role="region" aria-labelledby="t-catrais"><div class="acc-inner"><p>A definitive, scholarly listing of all known works by an artist, essential for authentication.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-commission" id="t-commission">
           <span class="bar" aria-hidden="true"></span><span class="label">Commission</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-commission" role="region" aria-labelledby="t-commission"><p>A fee charged by galleries, dealers, or auction houses for facilitating a sale.</p></div>
+        <div class="acc-panel" id="p-commission" role="region" aria-labelledby="t-commission"><div class="acc-inner"><p>A fee charged by galleries, dealers, or auction houses for facilitating a sale.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-condrep" id="t-condrep">
           <span class="bar" aria-hidden="true"></span><span class="label">Condition Report</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-condrep" role="region" aria-labelledby="t-condrep"><p>A document detailing the physical state of an artwork, vital for valuation and due diligence.</p></div>
+        <div class="acc-panel" id="p-condrep" role="region" aria-labelledby="t-condrep"><div class="acc-inner"><p>A document detailing the physical state of an artwork, vital for valuation and due diligence.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-contemporary" id="t-contemporary">
           <span class="bar" aria-hidden="true"></span><span class="label">Contemporary Art</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-contemporary" role="region" aria-labelledby="t-contemporary"><p>Art created from the mid 20th century to the present, often speculative and more volatile in market value.</p></div>
+        <div class="acc-panel" id="p-contemporary" role="region" aria-labelledby="t-contemporary"><div class="acc-inner"><p>Art created from the mid 20th century to the present, often speculative and more volatile in market value.</p></div></div>
       </div>
     </div>
 
@@ -183,28 +186,28 @@
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-dealer" id="t-dealer">
           <span class="bar" aria-hidden="true"></span><span class="label">Dealer</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-dealer" role="region" aria-labelledby="t-dealer"><p>An art professional or gallery owner who buys and sells works privately.</p></div>
+        <div class="acc-panel" id="p-dealer" role="region" aria-labelledby="t-dealer"><div class="acc-inner"><p>An art professional or gallery owner who buys and sells works privately.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-diptych" id="t-diptych">
           <span class="bar" aria-hidden="true"></span><span class="label">Diptych / Triptych</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-diptych" role="region" aria-labelledby="t-diptych"><p>Two or three paneled artworks designed to be viewed together.</p></div>
+        <div class="acc-panel" id="p-diptych" role="region" aria-labelledby="t-diptych"><div class="acc-inner"><p>Two or three paneled artworks designed to be viewed together.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-diversification" id="t-diversification">
           <span class="bar" aria-hidden="true"></span><span class="label">Diversification</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-diversification" role="region" aria-labelledby="t-diversification"><p>Including art in an investment portfolio to reduce overall risk and volatility.</p></div>
+        <div class="acc-panel" id="p-diversification" role="region" aria-labelledby="t-diversification"><div class="acc-inner"><p>Including art in an investment portfolio to reduce overall risk and volatility.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-drypoint" id="t-drypoint">
           <span class="bar" aria-hidden="true"></span><span class="label">Drypoint</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-drypoint" role="region" aria-labelledby="t-drypoint"><p>A printmaking technique where lines are incised into a plate with a sharp needle, producing soft, rich lines.</p></div>
+        <div class="acc-panel" id="p-drypoint" role="region" aria-labelledby="t-drypoint"><div class="acc-inner"><p>A printmaking technique where lines are incised into a plate with a sharp needle, producing soft, rich lines.</p></div></div>
       </div>
     </div>
 
@@ -215,28 +218,28 @@
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-edition" id="t-edition">
           <span class="bar" aria-hidden="true"></span><span class="label">Edition</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-edition" role="region" aria-labelledby="t-edition"><p>A limited run of prints, sculptures, or photographs made from the same source. Scarcity enhances collectability.</p></div>
+        <div class="acc-panel" id="p-edition" role="region" aria-labelledby="t-edition"><div class="acc-inner"><p>A limited run of prints, sculptures, or photographs made from the same source. Scarcity enhances collectability.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-emerging" id="t-emerging">
           <span class="bar" aria-hidden="true"></span><span class="label">Emerging Artist</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-emerging" role="region" aria-labelledby="t-emerging"><p>An artist gaining recognition but not yet widely traded on the secondary market.</p></div>
+        <div class="acc-panel" id="p-emerging" role="region" aria-labelledby="t-emerging"><div class="acc-inner"><p>An artist gaining recognition but not yet widely traded on the secondary market.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-encaustic" id="t-encaustic">
           <span class="bar" aria-hidden="true"></span><span class="label">Encaustic</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-encaustic" role="region" aria-labelledby="t-encaustic"><p>Painting technique using heated beeswax mixed with pigments. Durable with a distinct surface quality.</p></div>
+        <div class="acc-panel" id="p-encaustic" role="region" aria-labelledby="t-encaustic"><div class="acc-inner"><p>Painting technique using heated beeswax mixed with pigments. Durable with a distinct surface quality.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-easel" id="t-easel">
           <span class="bar" aria-hidden="true"></span><span class="label">Easel Work</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-easel" role="region" aria-labelledby="t-easel"><p>Traditional paintings made for display rather than murals or installations.</p></div>
+        <div class="acc-panel" id="p-easel" role="region" aria-labelledby="t-easel"><div class="acc-inner"><p>Traditional paintings made for display rather than murals or installations.</p></div></div>
       </div>
     </div>
 
@@ -247,21 +250,21 @@
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-fmv" id="t-fmv">
           <span class="bar" aria-hidden="true"></span><span class="label">Fair Market Value (FMV)</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-fmv" role="region" aria-labelledby="t-fmv"><p>The price an artwork would achieve in an open market transaction between a willing buyer and seller.</p></div>
+        <div class="acc-panel" id="p-fmv" role="region" aria-labelledby="t-fmv"><div class="acc-inner"><p>The price an artwork would achieve in an open market transaction between a willing buyer and seller.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-forgery" id="t-forgery">
           <span class="bar" aria-hidden="true"></span><span class="label">Forgery</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-forgery" role="region" aria-labelledby="t-forgery"><p>An imitation presented as genuine. A core risk in art investing mitigated by provenance and expert vetting.</p></div>
+        <div class="acc-panel" id="p-forgery" role="region" aria-labelledby="t-forgery"><div class="acc-inner"><p>An imitation presented as genuine. A core risk in art investing mitigated by provenance and expert vetting.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-fresco" id="t-fresco">
           <span class="bar" aria-hidden="true"></span><span class="label">Fresco</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-fresco" role="region" aria-labelledby="t-fresco"><p>Technique of painting onto wet plaster. Historically significant but less common as a tradable asset today.</p></div>
+        <div class="acc-panel" id="p-fresco" role="region" aria-labelledby="t-fresco"><div class="acc-inner"><p>Technique of painting onto wet plaster. Historically significant but less common as a tradable asset today.</p></div></div>
       </div>
     </div>
 
@@ -272,21 +275,21 @@
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-rep" id="t-rep">
           <span class="bar" aria-hidden="true"></span><span class="label">Gallery Representation</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-rep" role="region" aria-labelledby="t-rep"><p>When an artist is represented by a gallery that manages exhibitions and sales, often strengthening market value.</p></div>
+        <div class="acc-panel" id="p-rep" role="region" aria-labelledby="t-rep"><div class="acc-inner"><p>When an artist is represented by a gallery that manages exhibitions and sales, often strengthening market value.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-giclee" id="t-giclee">
           <span class="bar" aria-hidden="true"></span><span class="label">Giclée</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-giclee" role="region" aria-labelledby="t-giclee"><p>High quality inkjet print reproductions. Typically decorative rather than investment grade.</p></div>
+        <div class="acc-panel" id="p-giclee" role="region" aria-labelledby="t-giclee"><div class="acc-inner"><p>High quality inkjet print reproductions. Typically decorative rather than investment grade.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-gouache" id="t-gouache">
           <span class="bar" aria-hidden="true"></span><span class="label">Gouache</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-gouache" role="region" aria-labelledby="t-gouache"><p>An opaque water based paint often used for studies and smaller works.</p></div>
+        <div class="acc-panel" id="p-gouache" role="region" aria-labelledby="t-gouache"><div class="acc-inner"><p>An opaque water based paint often used for studies and smaller works.</p></div></div>
       </div>
     </div>
 
@@ -297,28 +300,28 @@
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-illiquidity" id="t-illiquidity">
           <span class="bar" aria-hidden="true"></span><span class="label">Illiquidity</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-illiquidity" role="region" aria-labelledby="t-illiquidity"><p>The difficulty of converting art into cash quickly without losing value.</p></div>
+        <div class="acc-panel" id="p-illiquidity" role="region" aria-labelledby="t-illiquidity"><div class="acc-inner"><p>The difficulty of converting art into cash quickly without losing value.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-index" id="t-index">
           <span class="bar" aria-hidden="true"></span><span class="label">Index (Art Index)</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-index" role="region" aria-labelledby="t-index"><p>A market performance benchmark, such as the Mei Moses Index, tracking art as an asset class over time.</p></div>
+        <div class="acc-panel" id="p-index" role="region" aria-labelledby="t-index"><div class="acc-inner"><p>A market performance benchmark, such as the Mei Moses Index, tracking art as an asset class over time.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-installation" id="t-installation">
           <span class="bar" aria-hidden="true"></span><span class="label">Installation Art</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-installation" role="region" aria-labelledby="t-installation"><p>Large scale works designed for specific spaces. Significant culturally but often less liquid as investments.</p></div>
+        <div class="acc-panel" id="p-installation" role="region" aria-labelledby="t-installation"><div class="acc-inner"><p>Large scale works designed for specific spaces. Significant culturally but often less liquid as investments.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-insurance" id="t-insurance">
           <span class="bar" aria-hidden="true"></span><span class="label">Insurance Value</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-insurance" role="region" aria-labelledby="t-insurance"><p>The cost of replacing an artwork if lost or damaged. Typically higher than resale value.</p></div>
+        <div class="acc-panel" id="p-insurance" role="region" aria-labelledby="t-insurance"><div class="acc-inner"><p>The cost of replacing an artwork if lost or damaged. Typically higher than resale value.</p></div></div>
       </div>
     </div>
 
@@ -329,21 +332,21 @@
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-limited" id="t-limited">
           <span class="bar" aria-hidden="true"></span><span class="label">Limited Edition</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-limited" role="region" aria-labelledby="t-limited"><p>A finite run of works, usually numbered and signed by the artist. Scarcity can support value.</p></div>
+        <div class="acc-panel" id="p-limited" role="region" aria-labelledby="t-limited"><div class="acc-inner"><p>A finite run of works, usually numbered and signed by the artist. Scarcity can support value.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-lithograph" id="t-lithograph">
           <span class="bar" aria-hidden="true"></span><span class="label">Lithograph</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-lithograph" role="region" aria-labelledby="t-lithograph"><p>Printmaking process using a stone or metal plate. Widely used by artists such as Picasso and Matisse.</p></div>
+        <div class="acc-panel" id="p-lithograph" role="region" aria-labelledby="t-lithograph"><div class="acc-inner"><p>Printmaking process using a stone or metal plate. Widely used by artists such as Picasso and Matisse.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-liquidity" id="t-liquidity">
           <span class="bar" aria-hidden="true"></span><span class="label">Liquidity Event</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-liquidity" role="region" aria-labelledby="t-liquidity"><p>A sale that turns an artwork into cash, via auction or private transaction.</p></div>
+        <div class="acc-panel" id="p-liquidity" role="region" aria-labelledby="t-liquidity"><div class="acc-inner"><p>A sale that turns an artwork into cash, via auction or private transaction.</p></div></div>
       </div>
     </div>
 
@@ -354,35 +357,35 @@
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-masterpiece" id="t-masterpiece">
           <span class="bar" aria-hidden="true"></span><span class="label">Masterpiece</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-masterpiece" role="region" aria-labelledby="t-masterpiece"><p>A work considered among an artist’s best or most representative. Often achieves premium pricing.</p></div>
+        <div class="acc-panel" id="p-masterpiece" role="region" aria-labelledby="t-masterpiece"><div class="acc-inner"><p>A work considered among an artist’s best or most representative. Often achieves premium pricing.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-medium" id="t-medium">
           <span class="bar" aria-hidden="true"></span><span class="label">Medium</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-medium" role="region" aria-labelledby="t-medium"><p>The materials used to create an artwork, for example oil, acrylic, bronze, photography.</p></div>
+        <div class="acc-panel" id="p-medium" role="region" aria-labelledby="t-medium"><div class="acc-inner"><p>The materials used to create an artwork, for example oil, acrylic, bronze, photography.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-mixed" id="t-mixed">
           <span class="bar" aria-hidden="true"></span><span class="label">Mixed Media</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-mixed" role="region" aria-labelledby="t-mixed"><p>Artwork that combines multiple materials or techniques in a single piece.</p></div>
+        <div class="acc-panel" id="p-mixed" role="region" aria-labelledby="t-mixed"><div class="acc-inner"><p>Artwork that combines multiple materials or techniques in a single piece.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-modern" id="t-modern">
           <span class="bar" aria-hidden="true"></span><span class="label">Modern Art</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-modern" role="region" aria-labelledby="t-modern"><p>Works produced roughly between the 1860s and 1970s, distinct from contemporary art.</p></div>
+        <div class="acc-panel" id="p-modern" role="region" aria-labelledby="t-modern"><div class="acc-inner"><p>Works produced roughly between the 1860s and 1970s, distinct from contemporary art.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-monotype" id="t-monotype">
           <span class="bar" aria-hidden="true"></span><span class="label">Monotype</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-monotype" role="region" aria-labelledby="t-monotype"><p>A one off print created from a unique plate. Valued for rarity and painterly qualities.</p></div>
+        <div class="acc-panel" id="p-monotype" role="region" aria-labelledby="t-monotype"><div class="acc-inner"><p>A one off print created from a unique plate. Valued for rarity and painterly qualities.</p></div></div>
       </div>
     </div>
 
@@ -393,21 +396,21 @@
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-oil" id="t-oil">
           <span class="bar" aria-hidden="true"></span><span class="label">Oil Paint</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-oil" role="region" aria-labelledby="t-oil"><p>Pigments bound with linseed or other oils. Prized for richness, durability, and depth of colour.</p></div>
+        <div class="acc-panel" id="p-oil" role="region" aria-labelledby="t-oil"><div class="acc-inner"><p>Pigments bound with linseed or other oils. Prized for richness, durability, and depth of colour.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-oldmasters" id="t-oldmasters">
           <span class="bar" aria-hidden="true"></span><span class="label">Old Masters</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-oldmasters" role="region" aria-labelledby="t-oldmasters"><p>Artists working in Europe before 1800. Historically stable segment of the market.</p></div>
+        <div class="acc-panel" id="p-oldmasters" role="region" aria-labelledby="t-oldmasters"><div class="acc-inner"><p>Artists working in Europe before 1800. Historically stable segment of the market.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-original" id="t-original">
           <span class="bar" aria-hidden="true"></span><span class="label">Original Work</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-original" role="region" aria-labelledby="t-original"><p>A one of a kind artwork, not a reproduction or print.</p></div>
+        <div class="acc-panel" id="p-original" role="region" aria-labelledby="t-original"><div class="acc-inner"><p>A one of a kind artwork, not a reproduction or print.</p></div></div>
       </div>
     </div>
 
@@ -418,35 +421,35 @@
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-pastel" id="t-pastel">
           <span class="bar" aria-hidden="true"></span><span class="label">Pastel</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-pastel" role="region" aria-labelledby="t-pastel"><p>Sticks of pigment and binder used for drawings. Fragile but often collectible.</p></div>
+        <div class="acc-panel" id="p-pastel" role="region" aria-labelledby="t-pastel"><div class="acc-inner"><p>Sticks of pigment and binder used for drawings. Fragile but often collectible.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-pigment" id="t-pigment">
           <span class="bar" aria-hidden="true"></span><span class="label">Pigment</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-pigment" role="region" aria-labelledby="t-pigment"><p>The colouring material in paint or ink, influencing visual quality and longevity.</p></div>
+        <div class="acc-panel" id="p-pigment" role="region" aria-labelledby="t-pigment"><div class="acc-inner"><p>The colouring material in paint or ink, influencing visual quality and longevity.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-portfolio" id="t-portfolio">
           <span class="bar" aria-hidden="true"></span><span class="label">Portfolio (Art)</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-portfolio" role="region" aria-labelledby="t-portfolio"><p>A collection of works by one artist or held by one investor or institution.</p></div>
+        <div class="acc-panel" id="p-portfolio" role="region" aria-labelledby="t-portfolio"><div class="acc-inner"><p>A collection of works by one artist or held by one investor or institution.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-primary" id="t-primary">
           <span class="bar" aria-hidden="true"></span><span class="label">Primary Market</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-primary" role="region" aria-labelledby="t-primary"><p>The first sale of an artwork, usually from the artist’s studio or representing gallery.</p></div>
+        <div class="acc-panel" id="p-primary" role="region" aria-labelledby="t-primary"><div class="acc-inner"><p>The first sale of an artwork, usually from the artist’s studio or representing gallery.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-provenance" id="t-provenance">
           <span class="bar" aria-hidden="true"></span><span class="label">Provenance</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-provenance" role="region" aria-labelledby="t-provenance"><p>The documented history of ownership. Critical for verifying authenticity and value.</p></div>
+        <div class="acc-panel" id="p-provenance" role="region" aria-labelledby="t-provenance"><div class="acc-inner"><p>The documented history of ownership. Critical for verifying authenticity and value.</p></div></div>
       </div>
     </div>
 
@@ -457,21 +460,21 @@
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-reserve" id="t-reserve">
           <span class="bar" aria-hidden="true"></span><span class="label">Reserve Price</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-reserve" role="region" aria-labelledby="t-reserve"><p>Minimum price set for an auction sale. If not met, the work may remain unsold.</p></div>
+        <div class="acc-panel" id="p-reserve" role="region" aria-labelledby="t-reserve"><div class="acc-inner"><p>Minimum price set for an auction sale. If not met, the work may remain unsold.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-restoration" id="t-restoration">
           <span class="bar" aria-hidden="true"></span><span class="label">Restoration</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-restoration" role="region" aria-labelledby="t-restoration"><p>Professional conservation to repair or stabilise artworks. Can affect value positively or negatively.</p></div>
+        <div class="acc-panel" id="p-restoration" role="region" aria-labelledby="t-restoration"><div class="acc-inner"><p>Professional conservation to repair or stabilise artworks. Can affect value positively or negatively.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-roi" id="t-roi">
           <span class="bar" aria-hidden="true"></span><span class="label">Return on Investment (ROI)</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-roi" role="region" aria-labelledby="t-roi"><p>Financial gain or loss on an artwork relative to its cost, usually expressed as a percentage.</p></div>
+        <div class="acc-panel" id="p-roi" role="region" aria-labelledby="t-roi"><div class="acc-inner"><p>Financial gain or loss on an artwork relative to its cost, usually expressed as a percentage.</p></div></div>
       </div>
     </div>
 
@@ -482,35 +485,35 @@
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-sculpture" id="t-sculpture">
           <span class="bar" aria-hidden="true"></span><span class="label">Sculpture</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-sculpture" role="region" aria-labelledby="t-sculpture"><p>Three dimensional artwork created from materials such as stone, bronze, wood, or resin.</p></div>
+        <div class="acc-panel" id="p-sculpture" role="region" aria-labelledby="t-sculpture"><div class="acc-inner"><p>Three dimensional artwork created from materials such as stone, bronze, wood, or resin.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-secondary" id="t-secondary">
           <span class="bar" aria-hidden="true"></span><span class="label">Secondary Market</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-secondary" role="region" aria-labelledby="t-secondary"><p>The resale market for artworks, primarily auctions and private dealers.</p></div>
+        <div class="acc-panel" id="p-secondary" role="region" aria-labelledby="t-secondary"><div class="acc-inner"><p>The resale market for artworks, primarily auctions and private dealers.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-securitisation" id="t-securitisation">
           <span class="bar" aria-hidden="true"></span><span class="label">Securitisation</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-securitisation" role="region" aria-labelledby="t-securitisation"><p>Investment model allowing fractional ownership of artworks through shares or units.</p></div>
+        <div class="acc-panel" id="p-securitisation" role="region" aria-labelledby="t-securitisation"><div class="acc-inner"><p>Investment model allowing fractional ownership of artworks through shares or units.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-serigraph" id="t-serigraph">
           <span class="bar" aria-hidden="true"></span><span class="label">Serigraph (Silkscreen)</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-serigraph" role="region" aria-labelledby="t-serigraph"><p>Printmaking technique using stencils and mesh. Popularised in Pop Art by artists such as Warhol.</p></div>
+        <div class="acc-panel" id="p-serigraph" role="region" aria-labelledby="t-serigraph"><div class="acc-inner"><p>Printmaking technique using stencils and mesh. Popularised in Pop Art by artists such as Warhol.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-stilllife" id="t-stilllife">
           <span class="bar" aria-hidden="true"></span><span class="label">Still Life</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-stilllife" role="region" aria-labelledby="t-stilllife"><p>Artistic genre depicting inanimate subjects. Traditional and widely collected.</p></div>
+        <div class="acc-panel" id="p-stilllife" role="region" aria-labelledby="t-stilllife"><div class="acc-inner"><p>Artistic genre depicting inanimate subjects. Traditional and widely collected.</p></div></div>
       </div>
     </div>
 
@@ -521,21 +524,21 @@
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-tangible" id="t-tangible">
           <span class="bar" aria-hidden="true"></span><span class="label">Tangible Asset</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-tangible" role="region" aria-labelledby="t-tangible"><p>A physical asset like art that can function as a hedge against inflation and currency risk.</p></div>
+        <div class="acc-panel" id="p-tangible" role="region" aria-labelledby="t-tangible"><div class="acc-inner"><p>A physical asset like art that can function as a hedge against inflation and currency risk.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-tempera" id="t-tempera">
           <span class="bar" aria-hidden="true"></span><span class="label">Tempera</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-tempera" role="region" aria-labelledby="t-tempera"><p>Fast drying paint using egg yolk and pigment. Common in Renaissance panel painting.</p></div>
+        <div class="acc-panel" id="p-tempera" role="region" aria-labelledby="t-tempera"><div class="acc-inner"><p>Fast drying paint using egg yolk and pigment. Common in Renaissance panel painting.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-title" id="t-title">
           <span class="bar" aria-hidden="true"></span><span class="label">Title</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-title" role="region" aria-labelledby="t-title"><p>Legal ownership rights to an artwork.</p></div>
+        <div class="acc-panel" id="p-title" role="region" aria-labelledby="t-title"><div class="acc-inner"><p>Legal ownership rights to an artwork.</p></div></div>
       </div>
     </div>
 
@@ -546,14 +549,14 @@
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-ultra" id="t-ultra">
           <span class="bar" aria-hidden="true"></span><span class="label">Ultra-Contemporary</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-ultra" role="region" aria-labelledby="t-ultra"><p>Refers to artists under 40 or recently emerging on the global market. High growth but more speculative.</p></div>
+        <div class="acc-panel" id="p-ultra" role="region" aria-labelledby="t-ultra"><div class="acc-inner"><p>Refers to artists under 40 or recently emerging on the global market. High growth but more speculative.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-unique" id="t-unique">
           <span class="bar" aria-hidden="true"></span><span class="label">Unique Piece</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-unique" role="region" aria-labelledby="t-unique"><p>A one off work with no duplicates. Generally commands higher value than editioned works.</p></div>
+        <div class="acc-panel" id="p-unique" role="region" aria-labelledby="t-unique"><div class="acc-inner"><p>A one off work with no duplicates. Generally commands higher value than editioned works.</p></div></div>
       </div>
     </div>
 
@@ -564,14 +567,14 @@
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-valuation" id="t-valuation">
           <span class="bar" aria-hidden="true"></span><span class="label">Valuation</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-valuation" role="region" aria-labelledby="t-valuation"><p>Professional assessment of an artwork’s worth considering artist reputation, provenance, condition, and demand.</p></div>
+        <div class="acc-panel" id="p-valuation" role="region" aria-labelledby="t-valuation"><div class="acc-inner"><p>Professional assessment of an artwork’s worth considering artist reputation, provenance, condition, and demand.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-vernissage" id="t-vernissage">
           <span class="bar" aria-hidden="true"></span><span class="label">Vernissage</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-vernissage" role="region" aria-labelledby="t-vernissage"><p>A private preview or opening event of an exhibition, often attended by collectors and investors.</p></div>
+        <div class="acc-panel" id="p-vernissage" role="region" aria-labelledby="t-vernissage"><div class="acc-inner"><p>A private preview or opening event of an exhibition, often attended by collectors and investors.</p></div></div>
       </div>
     </div>
 
@@ -582,21 +585,21 @@
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-wallpower" id="t-wallpower">
           <span class="bar" aria-hidden="true"></span><span class="label">Wall Power</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-wallpower" role="region" aria-labelledby="t-wallpower"><p>Informal term for the visual impact of a work on display, which can influence desirability and price.</p></div>
+        <div class="acc-panel" id="p-wallpower" role="region" aria-labelledby="t-wallpower"><div class="acc-inner"><p>Informal term for the visual impact of a work on display, which can influence desirability and price.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-watercolour" id="t-watercolour">
           <span class="bar" aria-hidden="true"></span><span class="label">Watercolour</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-watercolour" role="region" aria-labelledby="t-watercolour"><p>Paint made with pigment and a water soluble binder. Valued for transparency and delicacy.</p></div>
+        <div class="acc-panel" id="p-watercolour" role="region" aria-labelledby="t-watercolour"><div class="acc-inner"><p>Paint made with pigment and a water soluble binder. Valued for transparency and delicacy.</p></div></div>
       </div>
 
       <div class="acc-item" role="listitem">
         <button class="acc-trigger" aria-expanded="false" aria-controls="p-wealth" id="t-wealth">
           <span class="bar" aria-hidden="true"></span><span class="label">Wealth Preservation</span><span class="chev" aria-hidden="true">+</span>
         </button>
-        <div class="acc-panel" id="p-wealth" role="region" aria-labelledby="t-wealth"><p>Art’s role as a store of value in uncertain economic conditions.</p></div>
+        <div class="acc-panel" id="p-wealth" role="region" aria-labelledby="t-wealth"><div class="acc-inner"><p>Art’s role as a store of value in uncertain economic conditions.</p></div></div>
       </div>
     </div>
   </div>
@@ -604,41 +607,46 @@
   <script>
     const triggers = Array.from(document.querySelectorAll('.acc-trigger'));
     const panels   = triggers.map(t => t.nextElementSibling);
+    const inners   = panels.map(p => p.querySelector('.acc-inner'));
     const live     = document.getElementById('live');
 
-    // ResizeObserver keeps height in sync while opening (fonts, wraps, etc.)
+    // Observe inner content size while opening (fonts, wraps, images), sync panel height
     const ro = new ResizeObserver(entries => {
       for (const entry of entries) {
-        const p = entry.target;
-        const isOpen = p.classList.contains('open');
-        const isAnimating = getComputedStyle(p).maxHeight !== 'none';
+        const inner = entry.target;
+        const panel = inner.parentElement;
+        const isOpen = panel.classList.contains('open');
+        const isAnimating = getComputedStyle(panel).maxHeight !== 'none';
         if (isOpen && isAnimating) {
-          p.style.maxHeight = p.scrollHeight + 'px';
+          panel.style.maxHeight = inner.scrollHeight + 'px';
         }
       }
     });
-    panels.forEach(p => ro.observe(p));
+    inners.forEach(inner => ro.observe(inner));
 
+    // Utility: wait 2 frames so layout fully settles before measuring
     const nextFrame = () => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
 
-    async function setExpanded(trigger, panel, expanded){
+    async function setExpanded(trigger, panel, inner, expanded){
       trigger.setAttribute('aria-expanded', expanded ? 'true' : 'false');
 
       if (expanded) {
         panel.classList.add('open');
-        panel.style.maxHeight = '0px';      // reset
-        await nextFrame();                  // ensure layout is settled
-        panel.style.maxHeight = panel.scrollHeight + 'px';
+        panel.style.maxHeight = '0px';      // ensure starting from zero
+        await nextFrame();                  // let styles/layout settle
+        panel.style.maxHeight = inner.scrollHeight + 'px';
 
         const onEnd = (e) => {
           if (e.propertyName !== 'max-height') return;
-          panel.style.maxHeight = 'none';   // release to avoid future clipping
+          panel.style.maxHeight = 'none';   // release so it can grow naturally later
           panel.removeEventListener('transitionend', onEnd);
         };
         panel.addEventListener('transitionend', onEnd, { once: true });
+
       } else {
+        // If currently released, set back to pixel height first for smooth collapse
         if (getComputedStyle(panel).maxHeight === 'none') {
-          panel.style.maxHeight = panel.scrollHeight + 'px';
+          panel.style.maxHeight = inner.scrollHeight + 'px';
           panel.offsetHeight; // reflow
         }
         panel.classList.remove('open');
@@ -647,26 +655,23 @@
     }
 
     function openAll(){
-      triggers.forEach((t, i) => setExpanded(t, panels[i], true));
+      triggers.forEach((t, i) => setExpanded(t, panels[i], inners[i], true));
       if (live) live.textContent = 'All panels expanded';
     }
     function closeAll(){
-      triggers.forEach((t, i) => setExpanded(t, panels[i], false));
+      triggers.forEach((t, i) => setExpanded(t, panels[i], inners[i], false));
       if (live) live.textContent = 'All panels collapsed';
     }
 
-    // Click and keyboard
+    // Click & keyboard
     triggers.forEach((t, i) => {
-      const p = panels[i];
+      const p = panels[i], inner = inners[i];
       t.addEventListener('click', () => {
         const isOpen = t.getAttribute('aria-expanded') === 'true';
-        setExpanded(t, p, !isOpen);
+        setExpanded(t, p, inner, !isOpen);
       });
       t.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          t.click();
-        }
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); t.click(); }
       });
     });
 
@@ -691,10 +696,11 @@
     window.addEventListener('resize', () => {
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
-        panels.forEach(p => {
+        panels.forEach((p, i) => {
+          const inner = inners[i];
           if (!p.classList.contains('open')) return;
           if (getComputedStyle(p).maxHeight !== 'none') {
-            p.style.maxHeight = p.scrollHeight + 'px';
+            p.style.maxHeight = inner.scrollHeight + 'px';
           }
         });
       });
