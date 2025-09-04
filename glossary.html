@@ -10,7 +10,7 @@
       --text:#222;
       --muted:#666;
       --border:#e6e6e6;
-      --accent:#0f172a;   /* left bar and focus ring */
+      --accent:#0f172a;
       --hover:#f7f7f7;
     }
     *{box-sizing:border-box}
@@ -25,49 +25,37 @@
     }
     .btn:hover{background:var(--hover)}
     .btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-
-    /* Letter headers (A, B, C...) */
     .letter{margin:22px 0 8px;font-weight:800;font-size:12px;letter-spacing:.08em;color:var(--accent)}
     .sr-only{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
 
     /* Accordion list style */
-    .acc-item{
-      border-top:1px solid var(--border);
-      position:relative;
-    }
-    .acc-item:first-of-type{border-top:1px solid var(--border)}
+    .acc-list{border-bottom:1px solid var(--border)}
+    .acc-item{border-top:1px solid var(--border);position:relative}
     .acc-trigger{
       width:100%;
       padding:14px 16px 14px 14px;
-      text-align:left;
-      background:transparent;border:0;cursor:pointer;
+      text-align:left;background:transparent;border:0;cursor:pointer;
       display:flex;align-items:center;gap:12px;
-      font-size:16px;font-weight:700;color:var(--text);
+      font-size:16px;font-weight:700;color:var(--text)
     }
     .acc-trigger:hover{background:var(--hover)}
     .acc-trigger:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
-    .acc-trigger .bar{
-      width:4px;height:20px;border-radius:2px;background:var(--accent);flex:0 0 4px
-    }
+    .acc-trigger .bar{width:4px;height:20px;border-radius:2px;background:var(--accent);flex:0 0 4px}
     .acc-trigger .label{flex:1 1 auto}
-    .acc-trigger .chev{
-      flex:0 0 auto;transition:transform .22s ease;color:var(--muted);font-weight:900;
-    }
+    .acc-trigger .chev{flex:0 0 auto;transition:transform .22s ease;color:var(--muted);font-weight:900}
     .acc-trigger[aria-expanded="true"] .chev{transform:rotate(45deg)} /* + to x-ish */
 
+    /* Fix: keep padding constant, animate only height */
     .acc-panel{
+      padding:10px 16px 14px 30px;
       max-height:0;
       overflow:hidden;
-      transition:max-height .28s ease, padding .28s ease;
-      padding:0 16px 0 30px; /* indent to align with label after bar */
+      transition:max-height .28s ease;
       will-change:max-height;
       background:#fff;
     }
-    .acc-panel.open{padding:10px 16px 14px 30px}
     .acc-panel p{margin:0;font-size:15px}
-    .acc-list{border-bottom:1px solid var(--border);border-top:0}
 
-    /* Reduced motion */
     @media (prefers-reduced-motion:reduce){
       .acc-panel{transition:none}
       .acc-trigger .chev{transition:none}
@@ -614,42 +602,57 @@
   </div>
 
   <script>
-    // Helpers
     const triggers = Array.from(document.querySelectorAll('.acc-trigger'));
-    const panels = triggers.map(t => t.nextElementSibling);
-    const live = document.getElementById('live');
+    const panels   = triggers.map(t => t.nextElementSibling);
+    const live     = document.getElementById('live');
 
-    function setExpanded(trigger, panel, expanded){
+    // ResizeObserver keeps height in sync while opening (fonts, wraps, etc.)
+    const ro = new ResizeObserver(entries => {
+      for (const entry of entries) {
+        const p = entry.target;
+        const isOpen = p.classList.contains('open');
+        const isAnimating = getComputedStyle(p).maxHeight !== 'none';
+        if (isOpen && isAnimating) {
+          p.style.maxHeight = p.scrollHeight + 'px';
+        }
+      }
+    });
+    panels.forEach(p => ro.observe(p));
+
+    const nextFrame = () => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+
+    async function setExpanded(trigger, panel, expanded){
       trigger.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-      if(expanded){
+
+      if (expanded) {
         panel.classList.add('open');
-        // Opening: set pixel height for animation
+        panel.style.maxHeight = '0px';      // reset
+        await nextFrame();                  // ensure layout is settled
         panel.style.maxHeight = panel.scrollHeight + 'px';
-        // After transition, release to 'none' so content never clips
+
         const onEnd = (e) => {
           if (e.propertyName !== 'max-height') return;
-          panel.style.maxHeight = 'none';
+          panel.style.maxHeight = 'none';   // release to avoid future clipping
           panel.removeEventListener('transitionend', onEnd);
         };
         panel.addEventListener('transitionend', onEnd, { once: true });
       } else {
-        // If currently 'none', set to pixel height before collapsing for smooth transition
         if (getComputedStyle(panel).maxHeight === 'none') {
           panel.style.maxHeight = panel.scrollHeight + 'px';
-          // force reflow
-          panel.offsetHeight;
+          panel.offsetHeight; // reflow
         }
         panel.classList.remove('open');
         panel.style.maxHeight = '0px';
       }
     }
 
-    function closeAll(){
-      triggers.forEach((t, i) => setExpanded(t, panels[i], false));
-    }
-
     function openAll(){
       triggers.forEach((t, i) => setExpanded(t, panels[i], true));
+      if (live) live.textContent = 'All panels expanded';
+    }
+    function closeAll(){
+      triggers.forEach((t, i) => setExpanded(t, panels[i], false));
+      if (live) live.textContent = 'All panels collapsed';
     }
 
     // Click and keyboard
@@ -660,48 +663,45 @@
         setExpanded(t, p, !isOpen);
       });
       t.addEventListener('keydown', (e) => {
-        if(e.key === 'Enter' || e.key === ' '){
+        if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           t.click();
         }
       });
     });
 
-    // Expand/Collapse all controls
-    document.getElementById('expandAll').addEventListener('click', () => {
-      openAll();
-      if(live) live.textContent = 'All panels expanded';
-    });
-    document.getElementById('collapseAll').addEventListener('click', () => {
-      closeAll();
-      if(live) live.textContent = 'All panels collapsed';
-    });
+    // Controls
+    const expandBtn = document.getElementById('expandAll');
+    const collapseBtn = document.getElementById('collapseAll');
+    if (expandBtn) expandBtn.addEventListener('click', openAll);
+    if (collapseBtn) collapseBtn.addEventListener('click', closeAll);
 
-    // Deep link support: ?term=Provenance (prefix match on label text)
+    // Deep link support: ?term=Provenance
     const params = new URLSearchParams(window.location.search);
     const q = params.get('term');
-    if(q){
-      const match = triggers.find(t => t.querySelector('.label').textContent.trim().toLowerCase().startsWith(q.toLowerCase()));
-      if(match){ match.click(); match.scrollIntoView({behavior:'smooth', block:'center'}); }
+    if (q) {
+      const match = triggers.find(t =>
+        t.querySelector('.label').textContent.trim().toLowerCase().startsWith(q.toLowerCase())
+      );
+      if (match) { match.click(); match.scrollIntoView({ behavior:'smooth', block:'center' }); }
     }
 
-    // Keep height correct on resize for any panel currently using a pixel height during transition
+    // Keep pixel-based heights correct during window resize if animating
     let raf;
     window.addEventListener('resize', () => {
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
         panels.forEach(p => {
-          if(!p.classList.contains('open')) return;
-          // If still transitioning with a pixel max-height, update it
-          if(getComputedStyle(p).maxHeight !== 'none'){
+          if (!p.classList.contains('open')) return;
+          if (getComputedStyle(p).maxHeight !== 'none') {
             p.style.maxHeight = p.scrollHeight + 'px';
           }
         });
       });
     });
 
-    // Respect reduced motion
-    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    // Reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       panels.forEach(p => p.style.transition = 'none');
     }
   </script>
